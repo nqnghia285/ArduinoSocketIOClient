@@ -20,7 +20,8 @@
 
 #define EIO_MAX_HEADER_SIZE (WEBSOCKETS_MAX_HEADER_SIZE + 1)
 #define SIO_MAX_HEADER_SIZE (EIO_MAX_HEADER_SIZE + 1)
-#define SOCKETIOCLIENT_DEBUG(...) Serial.printf(__VA_ARGS__);
+// #define SOCKETIOCLIENT_DEBUG(...) Serial.printf(__VA_ARGS__);
+#define SOCKETIOCLIENT_DEBUG(...)
 
 typedef enum
 {
