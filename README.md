@@ -73,7 +73,7 @@ SocketIOClient library used Websockets library and ArduinoJson library. So, you 
     bool isConnected(void);
 ```
 
--   `onEvent`: Set callback function. This function is used for customing your event handle function.
+-   `onEvent`: Set callback function. This function is used for customizing your event handle function.
 
 ```c++
     void onEvent(SocketIOClientEvent cbEvent);

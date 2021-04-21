@@ -149,7 +149,7 @@ void SocketIOClient::configureEIOping(bool disableHeartbeat)
 }
 
 /**
- * @brief Initial client and bind to function param in function onEvent. You can override it for your customizing
+ * @brief Initiate client and bind to function param in function onEvent. You can override it for your customizing
  * 
  */
 void SocketIOClient::initClient(void)
