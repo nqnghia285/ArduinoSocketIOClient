@@ -4,7 +4,7 @@
 
 // Note: SocketIOClient used ArduinoJson and Websockets library, so you must import it.
 // If you see conflict error among them (SocketIOclient and SocketIOClient), you can remove SocketIOclient.h and SocketIOclient.cpp
-// in Websockets library. My library inheritanced SocketIOclient.
+// in Websockets library. My library inherited SocketIOclient.
 
 // Event
 // Server send
