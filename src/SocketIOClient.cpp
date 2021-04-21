@@ -2,7 +2,7 @@
  * SocketIOClient.cpp
  *
  *  Created on: Apr 20, 2021
- *      Author: links
+ *      Author: nqnghia285
  */
 #include "SocketIOClient.h"
 
@@ -149,7 +149,7 @@ void SocketIOClient::configureEIOping(bool disableHeartbeat)
 }
 
 /**
- * @brief Initial client and bind to function param in function onEvent. You can override it for your customing
+ * @brief Initial client and bind to function param in function onEvent. You can override it for your customizing
  * 
  */
 void SocketIOClient::initClient(void)
@@ -419,7 +419,7 @@ void SocketIOClient::handleEvent(uint8_t *payload)
 }
 
 /**
- * @brief Set callback function. This function is used for customing your event handle function
+ * @brief Set callback function. This function is used for customizing your event handle function
  * 
  * @param cbEvent SocketIOClientEvent
  */
