@@ -39,7 +39,7 @@ void serverSendMessage(const char *payload, size_t length)
     Serial.println(payload);
 }
 
-// Use for customing event handle function. If you don't want to custom, you can ignore it.
+// Use for customizing event handle function. If you don't want to customize, you can ignore it.
 // void socketEvent(socketIOmessageType_t type, uint8_t *payload, size_t length)
 // {
 //     switch (type)
@@ -109,7 +109,7 @@ void setup()
     // or socket.begin(host, port); if you want to connect to root path. Default nsp(path) = "/".
 
     // If you want to override event handle function, you can use below code:
-    // socket.onEvent(socketEvent);
+    // socket.onEvent(socketEvent); // this function must be called after begin function was called.
 
     //  Setup 'on' event listeners
     socket.on(SSAC, serverSendAckConnected);
