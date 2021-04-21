@@ -21,7 +21,7 @@ A library support connect to server use [Socket.IO](https://socket.io/).
 -   ATmega2560 with Ethernet Shield (ATmega branch)
 -   ATmega2560 with enc28j60 (ATmega branch)
 
-###### Note:
+### Note:
 
 SocketIOClient library used Websockets library and ArduinoJson library. So, you must import them your project.
 
