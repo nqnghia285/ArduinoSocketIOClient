@@ -5,6 +5,8 @@
  *      Author: nqnghia285
  */
 
+// #pragma once
+
 #ifndef SOCKETIOCLIENT_H_
 #define SOCKETIOCLIENT_H_
 

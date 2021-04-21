@@ -413,9 +413,6 @@ void SocketIOClient::handleEvent(uint8_t *payload)
 {
     String msg = String((char *)payload);
     trigger(getEventName(msg).c_str(), getEventPayload(msg).c_str(), getEventPayload(msg).length());
-    Serial.println("Trigger: " + msg);
-    Serial.println("Event: " + getEventName(msg));
-    Serial.println("Payload: " + getEventPayload(msg));
 }
 
 /**
