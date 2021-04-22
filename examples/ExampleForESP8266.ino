@@ -115,6 +115,9 @@ void setup()
     //  Setup 'on' event listeners
     socket.on(SSAC, serverSendAckConnected);
     socket.on(SSM, serverSendMessage);
+
+    // Remove event handle functions
+    // socket.remove(SSM);
 }
 
 // Send message
