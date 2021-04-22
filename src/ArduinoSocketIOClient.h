@@ -99,6 +99,7 @@ public:
     void on(String event, std::function<void(const char *payload, size_t length)>);
     void remove(const char *event);
     void remove(String event);
+    void removeAll(void);
     void emit(const char *event, const char *payload = NULL);
     void emit(String event, String payload);
     void handleEvent(uint8_t *payload);

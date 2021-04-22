@@ -149,6 +149,12 @@ ArduinoSocketIOClient library used Websockets library and ArduinoJson library. S
     void remove(String event);
 ```
 
+-   `removeAll` : Remove all of event handle functions in \_events of class ArduinoSocketIOClient.
+
+```c++
+    void removeAll(void);
+```
+
 -   `emit` : Function send event + message to server. This function support format JSON message.
 
 ```c++

@@ -6,13 +6,9 @@
  */
 #include "ArduinoSocketIOClient.h"
 
-ArduinoSocketIOClient::ArduinoSocketIOClient()
-{
-}
+ArduinoSocketIOClient::ArduinoSocketIOClient() {}
 
-ArduinoSocketIOClient::~ArduinoSocketIOClient()
-{
-}
+ArduinoSocketIOClient::~ArduinoSocketIOClient() {}
 
 /**
  * @brief Configure connect to server
@@ -211,6 +207,15 @@ void ArduinoSocketIOClient::remove(const char *event)
 void ArduinoSocketIOClient::remove(String event)
 {
     remove(event.c_str());
+}
+
+/**
+ * @brief Remove all of event handle functions in _events of class ArduinoSocketIOClient
+ * 
+ */
+void ArduinoSocketIOClient::removeAll()
+{
+    _events.clear();
 }
 
 /**
