@@ -7,8 +7,8 @@
 
 // #pragma once
 
-#ifndef SOCKETIOCLIENT_H_
-#define SOCKETIOCLIENT_H_
+#ifndef ARDUINOSOCKETIOCLIENT_H_
+#define ARDUINOSOCKETIOCLIENT_H_
 
 #include "WebSockets.h"
 #include "WebSocketsClient.h"
@@ -22,6 +22,11 @@
 #define SIO_MAX_HEADER_SIZE (EIO_MAX_HEADER_SIZE + 1)
 // #define SOCKETIOCLIENT_DEBUG(...) Serial.printf(__VA_ARGS__);
 #define SOCKETIOCLIENT_DEBUG(...)
+#define DEFAULT_PORT 80
+#define DEFAULT_SSL_PORT 443
+#define DEFAULT_URL "/socket.io/?EIO=4"
+#define DEFAULT_PROTOCOL "arduino"
+#define DEFAULT_PATH "/"
 
 typedef enum
 {
@@ -45,7 +50,7 @@ typedef enum
     sIOtype_BINARY_ACK = '6',
 } socketIOmessageType_t;
 
-class SocketIOClient : protected WebSocketsClient
+class ArduinoSocketIOClient : protected WebSocketsClient
 {
 public:
 #ifdef __AVR__
@@ -54,18 +59,18 @@ public:
     typedef std::function<void(socketIOmessageType_t type, uint8_t *payload, size_t length)> SocketIOClientEvent;
 #endif
 
-    SocketIOClient(void);
-    virtual ~SocketIOClient(void);
+    ArduinoSocketIOClient(void);
+    virtual ~ArduinoSocketIOClient(void);
 
-    void begin(const char *host, uint16_t port, const char *nsp = "/", const char *url = "/socket.io/?EIO=4", const char *protocol = "arduino");
-    void begin(String host, uint16_t port, String nsp = "/", String url = "/socket.io/?EIO=4", String protocol = "arduino");
+    void begin(const char *host, uint16_t port = DEFAULT_PORT, const char *nsp = DEFAULT_PATH, const char *url = DEFAULT_URL, const char *protocol = DEFAULT_PROTOCOL);
+    void begin(String host, uint16_t port = DEFAULT_PORT, String nsp = DEFAULT_PATH, String url = DEFAULT_URL, String protocol = DEFAULT_PROTOCOL);
 
 #ifdef HAS_SSL
-    void beginSSL(const char *host, uint16_t port, const char *nsp = "/", const char *url = "/socket.io/?EIO=4", const char *protocol = "arduino");
-    void beginSSL(String host, uint16_t port, String nsp = "/", String url = "/socket.io/?EIO=4", String protocol = "arduino");
+    void beginSSL(const char *host, const char *nsp = DEFAULT_PATH, uint16_t port = DEFAULT_SSL_PORT, const char *url = DEFAULT_URL, const char *protocol = DEFAULT_PROTOCOL);
+    void beginSSL(String host, String nsp = DEFAULT_PATH, uint16_t port = DEFAULT_SSL_PORT, String url = DEFAULT_URL, String protocol = DEFAULT_PROTOCOL);
 #ifndef SSL_AXTLS
-    void beginSSLWithCA(const char *host, uint16_t port, const char *nsp = "/", const char *url = "/socket.io/?EIO=4", const char *CA_cert = NULL, const char *protocol = "arduino");
-    void beginSSLWithCA(const char *host, uint16_t port, const char *nsp = "/", const char *url = "/socket.io/?EIO=4", BearSSL::X509List *CA_cert = NULL, const char *protocol = "arduino");
+    void beginSSLWithCA(const char *host, const char *nsp = DEFAULT_PATH, uint16_t port = DEFAULT_SSL_PORT, const char *url = DEFAULT_URL, const char *CA_cert = NULL, const char *protocol = DEFAULT_PROTOCOL);
+    void beginSSLWithCA(const char *host, const char *nsp = DEFAULT_PATH, uint16_t port = DEFAULT_SSL_PORT, const char *url = DEFAULT_URL, BearSSL::X509List *CA_cert = NULL, const char *protocol = DEFAULT_PROTOCOL);
     void setSSLClientCertKey(const char *clientCert = NULL, const char *clientPrivateKey = NULL);
     void setSSLClientCertKey(BearSSL::X509List *clientCert = NULL, BearSSL::PrivateKey *clientPrivateKey = NULL);
 #endif
@@ -92,6 +97,8 @@ public:
 
     void on(const char *event, std::function<void(const char *payload, size_t length)>);
     void on(String event, std::function<void(const char *payload, size_t length)>);
+    void remove(const char *event);
+    void remove(String event);
     void emit(const char *event, const char *payload = NULL);
     void emit(String event, String payload);
     void handleEvent(uint8_t *payload);
@@ -130,4 +137,4 @@ protected:
     void handleCbEvent(WStype_t type, uint8_t *payload, size_t length);
 };
 
-#endif /* SOCKETIOCLIENT_H_ */
+#endif /* ARDUINOSOCKETIOCLIENT_H_ */

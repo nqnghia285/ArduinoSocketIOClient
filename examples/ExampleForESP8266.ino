@@ -1,10 +1,8 @@
 #include <Arduino.h>
 #include <ESP8266WiFi.h>
-#include <SocketIOClient.h>
+#include <ArduinoSocketIOClient.h>
 
-// Note: SocketIOClient used ArduinoJson and Websockets library, so you must import it.
-// If you see conflict error among them (SocketIOclient and SocketIOClient), you must remove SocketIOclient.h and SocketIOclient.cpp
-// in Websockets library. My library inherited SocketIOclient.
+// Note: SocketIOClient used ArduinoJson and Websockets library, so you must import them into your project.
 
 // Event
 // Server send
@@ -22,10 +20,11 @@ const char *pwd = "password-of-wifi";
 
 // Config server side
 const char host[] = "xxx.xxx.xxx.xxx";
-uint16_t port = 5000;
+uint16_t port = 5000; // If you connect to a VPS hosting run HTTP, you must set port = 80.
+const char ssl_host[] = "example.com";
 const char path[] = "/client"; // If you connect with namespace, set path = "/your-nsp". Default path = "/".
 
-SocketIOClient socket;
+ArduinoSocketIOClient socket;
 
 void serverSendAckConnected(const char *payload, size_t length)
 {
@@ -107,6 +106,8 @@ void setup()
     // Connect to server with namespace
     socket.begin(host, port, path);
     // or socket.begin(host, port); if you want to connect to root path. Default nsp(path) = "/".
+    // If you want to connect to server witn ssl, you can follow code below:
+    // socket.beginSSL(ssl_host, path); // Default port = 443.
 
     // If you want to override event handle function, you can use below code:
     // socket.onEvent(socketEvent); // this function must be called after begin function was called.

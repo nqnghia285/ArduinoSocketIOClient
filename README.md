@@ -23,38 +23,38 @@ A library support connect to server use [Socket.IO](https://socket.io/).
 
 ### Note:
 
-SocketIOClient library used Websockets library and ArduinoJson library. So, you must import them your project.
+SocketIOClient library used Websockets library and ArduinoJson library. So, you must import them into your project.
 
 ### High Level Client API
 
 -   `begin` : Initiate connection sequence to the Socket.IO host.
 
 ```c++
-    void begin(const char *host, uint16_t port, const char *nsp = "/", const char *url = "/socket.io/?EIO=4", const char *protocol = "arduino");
+    void begin(const char *host, uint16_t port = 80, const char *nsp = "/", const char *url = "/socket.io/?EIO=4", const char *protocol = "arduino");
 ```
 
 ```c++
-    void begin(String host, uint16_t port, String nsp = "/", String url = "/socket.io/?EIO=4", String protocol = "arduino");
+    void begin(String host, uint16_t port = 80, String nsp = "/", String url = "/socket.io/?EIO=4", String protocol = "arduino");
 ```
 
 -   `beginSSL` : Initiate connection sequence with SSL to the Socket.IO host.
 
 ```c++
-    void beginSSL(const char *host, uint16_t port, const char *nsp = "/", const char *url = "/socket.io/?EIO=4", const char *protocol = "arduino");
+    void beginSSL(const char *host, const char *nsp = "/", uint16_t port = 443, const char *url = "/socket.io/?EIO=4", const char *protocol = "arduino");
 ```
 
 ```c++
-    void beginSSL(String host, uint16_t port, String nsp = "/", String url = "/socket.io/?EIO=4", String protocol = "arduino");
+    void beginSSL(String host, String nsp = "/", uint16_t port = 443, String url = "/socket.io/?EIO=4", String protocol = "arduino");
 ```
 
 -   `beginSSLWithAC` : Initiate connection sequence with SSL + CA to the Socket.IO host.
 
 ```c++
-    void beginSSLWithCA(const char *host, uint16_t port, const char *nsp = "/", const char *url = "/socket.io/?EIO=4", const char *CA_cert = NULL, const char *protocol = "arduino");
+    void beginSSLWithCA(const char *host, const char *nsp = "/", uint16_t port = 443, const char *url = "/socket.io/?EIO=4", const char *CA_cert = NULL, const char *protocol = "arduino");
 ```
 
 ```c++
-    void beginSSLWithCA(const char *host, uint16_t port, const char *nsp = "/", const char *url = "/socket.io/?EIO=4", BearSSL::X509List *CA_cert = NULL, const char *protocol = "arduino");
+    void beginSSLWithCA(const char *host, const char *nsp = "/", uint16_t port = 443, const char *url = "/socket.io/?EIO=4", BearSSL::X509List *CA_cert = NULL, const char *protocol = "arduino");
 ```
 
 -   `setSSLClientCertKey` :
@@ -137,6 +137,16 @@ SocketIOClient library used Websockets library and ArduinoJson library. So, you 
 
 ```c++
     void on(String event, std::function<void(const char *payload, size_t length)>);
+```
+
+-   `remove` : Remove the event handle function in \_events of class ArduinoSocketIOClient.
+
+```c++
+    void remove(const char *event);
+```
+
+```c++
+    void remove(String event);
 ```
 
 -   `emit` : Function send event + message to server. This function support format JSON message.
