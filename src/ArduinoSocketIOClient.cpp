@@ -281,14 +281,7 @@ void ArduinoSocketIOClient::emit(const char *event, const char *payload)
  */
 void ArduinoSocketIOClient::emit(String event, String payload)
 {
-    if (isConnected())
-    {
-        emit(event.c_str(), payload.c_str());
-    }
-    else
-    {
-        SOCKETIOCLIENT_DEBUG("[SIoC]: Disconnected!");
-    }
+    emit(event.c_str(), payload.c_str());
 }
 
 /**
