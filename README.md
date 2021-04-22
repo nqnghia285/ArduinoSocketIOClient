@@ -1,4 +1,4 @@
-# SocketIOClient for Arduino [![Build Status](https://github.com/Links2004/arduinoWebSockets/workflows/CI/badge.svg?branch=master)](https://github.com/nqnghia285/SocketIOClient)
+# ArduinoSocketIOClient for Arduino [![Build Status](https://github.com/Links2004/arduinoWebSockets/workflows/CI/badge.svg?branch=master)](https://github.com/nqnghia285/ArduinoSocketIOClient)
 
 A library support connect to server use [Socket.IO](https://socket.io/).
 
@@ -23,7 +23,7 @@ A library support connect to server use [Socket.IO](https://socket.io/).
 
 ### Note:
 
-SocketIOClient library used Websockets library and ArduinoJson library. So, you must import them into your project.
+ArduinoSocketIOClient library used Websockets library and ArduinoJson library. So, you must import them into your project.
 
 ### High Level Client API
 
@@ -167,8 +167,8 @@ SocketIOClient library used Websockets library and ArduinoJson library. So, you 
 
 ### Example
 
-Visit to: https://github.com/nqnghia285/SocketIOClient/blob/main/examples/ExampleForESP8266.ino
+Visit to: https://github.com/nqnghia285/ArduinoSocketIOClient/blob/main/examples/ExampleForESP8266.ino
 
 ### Issues
 
-Submit issues to: https://github.com/nqnghia285/SocketIOClient/issues
+Submit issues to: https://github.com/nqnghia285/ArduinoSocketIOClient/issues
