@@ -182,7 +182,7 @@ void ArduinoSocketIOClient::on(const char *event, std::function<void(const char 
  */
 void ArduinoSocketIOClient::on(String event, std::function<void(const char *payload, size_t length)> func)
 {
-    _events[event] = func;
+    on(event.c_str(), func);
 }
 
 /**
