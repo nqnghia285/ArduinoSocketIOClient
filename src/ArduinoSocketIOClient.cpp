@@ -439,7 +439,7 @@ void ArduinoSocketIOClient::socketEvent(socketIOmessageType_t type, uint8_t *pay
 
         break;
     case sIOtype_EVENT:
-        //SOCKETIOCLIENT_DEBUG("[SIoC] get event: %s\n", payload);
+        SOCKETIOCLIENT_DEBUG("[SIoC] get event: %s\n", payload);
 
         // Serial.println("Message: " + String((char *)payload));
         // Handle message sent from server
