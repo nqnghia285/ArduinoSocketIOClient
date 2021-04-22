@@ -221,49 +221,56 @@ void ArduinoSocketIOClient::remove(String event)
  */
 void ArduinoSocketIOClient::emit(const char *event, const char *payload)
 {
-    DynamicJsonDocument _doc(512);
-    JsonArray _ms = _doc.to<JsonArray>();
-
-    // add evnet name
-    // Hint: socket.on('event_name', ....
-    _ms.add(event);
-
-    // add payload (parameters) for the event
-    JsonObject _params = _ms.createNestedObject();
-
-    DynamicJsonDocument params(512);
-    DeserializationError err = deserializeJson(params, payload);
-
-    if (err == DeserializationError::Ok)
+    if (isConnected())
     {
-        // Get a reference to the root object
-        JsonObject obj = params.as<JsonObject>();
-        for (JsonObject::iterator it = obj.begin(); it != obj.end(); ++it)
+        DynamicJsonDocument _doc(512);
+        JsonArray _ms = _doc.to<JsonArray>();
+
+        // add evnet name
+        // Hint: socket.on('event_name', ....
+        _ms.add(event);
+
+        // add payload (parameters) for the event
+        JsonObject _params = _ms.createNestedObject();
+
+        DynamicJsonDocument params(512);
+        DeserializationError err = deserializeJson(params, payload);
+
+        if (err == DeserializationError::Ok)
         {
-            _params[it->key()] = it->value();
+            // Get a reference to the root object
+            JsonObject obj = params.as<JsonObject>();
+            for (JsonObject::iterator it = obj.begin(); it != obj.end(); ++it)
+            {
+                _params[it->key()] = it->value();
+            }
         }
+        else
+        {
+            _ms.add(payload);
+        }
+
+        // JSON to String (serializion)
+        String message;
+        serializeJson(_ms, message);
+
+        if (!String(_nsp).equals("/"))
+        {
+            // _nsp,[_event_name,_message]
+            message = String(_nsp) + "," + message;
+        }
+
+        //SOCKETIOCLIENT_DEBUG("[SIoC] add packet %s\n", message.c_str());
+        _packets.push_back(message);
+
+        // Clear store
+        _doc.clear();
+        params.clear();
     }
     else
     {
-        _ms.add(payload);
+        SOCKETIOCLIENT_DEBUG("[SIoC]: Disconnected!");
     }
-
-    // JSON to String (serializion)
-    String message;
-    serializeJson(_ms, message);
-
-    if (!String(_nsp).equals("/"))
-    {
-        // _nsp,[_event_name,_message]
-        message = String(_nsp) + "," + message;
-    }
-
-    //SOCKETIOCLIENT_DEBUG("[SIoC] add packet %s\n", message.c_str());
-    _packets.push_back(message);
-
-    // Clear store
-    _doc.clear();
-    params.clear();
 }
 
 /**
@@ -274,51 +281,14 @@ void ArduinoSocketIOClient::emit(const char *event, const char *payload)
  */
 void ArduinoSocketIOClient::emit(String event, String payload)
 {
-    DynamicJsonDocument _doc(512);
-    JsonArray _ms = _doc.to<JsonArray>();
-
-    // add evnet name
-    // Hint: socket.on('event_name', ....
-    _ms.add(event);
-
-    // add payload (parameters) for the event
-    JsonObject _params = _ms.createNestedObject();
-
-    DynamicJsonDocument params(512);
-    DeserializationError err = deserializeJson(params, payload);
-
-    if (err == DeserializationError::Ok)
+    if (isConnected())
     {
-        // Get a reference to the root object
-        JsonObject obj = params.as<JsonObject>();
-        for (JsonObject::iterator it = obj.begin(); it != obj.end(); ++it)
-        {
-            _params[it->key()] = it->value();
-        }
+        emit(event.c_str(), payload.c_str());
     }
     else
     {
-        _ms.add(payload);
+        SOCKETIOCLIENT_DEBUG("[SIoC]: Disconnected!");
     }
-
-    // JSON to String (serializion)
-    String message;
-    serializeJson(_ms, message);
-
-    if (!String(_nsp).equals("/"))
-    {
-        // _nsp,[_event_name,_message]
-        message = String(_nsp) + "," + message;
-    }
-
-    // Serial.println("EMIT: " + message);
-
-    //SOCKETIOCLIENT_DEBUG("[SIoC] add packet %s\n", message.c_str());
-    _packets.push_back(message);
-
-    // Clear store
-    _doc.clear();
-    params.clear();
 }
 
 /**
