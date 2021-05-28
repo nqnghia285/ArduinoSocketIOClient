@@ -21,8 +21,7 @@ const char *pwd = "password-of-wifi";
 
 // Config server side
 const char host[] = "xxx.xxx.xxx.xxx";
-uint16_t port =
-    5000; // If you connect to a VPS hosting run HTTP, you must set port = 80.
+uint16_t port = 5000; // If you connect to a VPS hosting run HTTP, you must set port = 80.
 const char ssl_host[] = "example.com";
 const char path[] = "/client"; // If you connect with namespace, set path =
                                // "/your-nsp". Default path = "/".

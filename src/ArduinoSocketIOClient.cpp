@@ -19,9 +19,7 @@ ArduinoSocketIOClient::~ArduinoSocketIOClient() {}
  * @param url const char *
  * @param protocol const char *
  */
-void ArduinoSocketIOClient::begin(const char *host, uint16_t port,
-                                  const char *nsp, const char *url,
-                                  const char *protocol) {
+void ArduinoSocketIOClient::begin(const char *host, uint16_t port, const char *nsp, const char *url, const char *protocol) {
    _nsp = nsp;
    WebSocketsClient::beginSocketIO(host, port, url, protocol);
    WebSocketsClient::enableHeartbeat(60 * 1000, 90 * 1000, 5);
@@ -37,8 +35,7 @@ void ArduinoSocketIOClient::begin(const char *host, uint16_t port,
  * @param url String
  * @param protocol String
  */
-void ArduinoSocketIOClient::begin(String host, uint16_t port, String nsp,
-                                  String url, String protocol) {
+void ArduinoSocketIOClient::begin(String host, uint16_t port, String nsp, String url, String protocol) {
    _nsp = nsp.c_str();
    WebSocketsClient::beginSocketIO(host, port, url, protocol);
    WebSocketsClient::enableHeartbeat(60 * 1000, 90 * 1000, 5);
@@ -54,9 +51,7 @@ void ArduinoSocketIOClient::begin(String host, uint16_t port, String nsp,
  * @param url const char *
  * @param protocol const char *
  */
-void ArduinoSocketIOClient::beginSSL(const char *host, const char *nsp,
-                                     uint16_t port, const char *url,
-                                     const char *protocol) {
+void ArduinoSocketIOClient::beginSSL(const char *host, const char *nsp, uint16_t port, const char *url, const char *protocol) {
    _nsp = nsp;
    WebSocketsClient::beginSocketIOSSL(host, port, url, protocol);
    WebSocketsClient::enableHeartbeat(60 * 1000, 90 * 1000, 5);
@@ -72,8 +67,7 @@ void ArduinoSocketIOClient::beginSSL(const char *host, const char *nsp,
  * @param url String
  * @param protocol String
  */
-void ArduinoSocketIOClient::beginSSL(String host, String nsp, uint16_t port,
-                                     String url, String protocol) {
+void ArduinoSocketIOClient::beginSSL(String host, String nsp, uint16_t port, String url, String protocol) {
    _nsp = nsp.c_str();
    WebSocketsClient::beginSocketIOSSL(host, port, url, protocol);
    WebSocketsClient::enableHeartbeat(60 * 1000, 90 * 1000, 5);
@@ -90,10 +84,7 @@ void ArduinoSocketIOClient::beginSSL(String host, String nsp, uint16_t port,
  * @param CA_cert const char *
  * @param protocol const char *
  */
-void ArduinoSocketIOClient::beginSSLWithCA(const char *host, const char *nsp,
-                                           uint16_t port, const char *url,
-                                           const char *CA_cert,
-                                           const char *protocol) {
+void ArduinoSocketIOClient::beginSSLWithCA(const char *host, const char *nsp, uint16_t port, const char *url, const char *CA_cert, const char *protocol) {
    _nsp = nsp;
    WebSocketsClient::beginSocketIOSSLWithCA(host, port, url, CA_cert, protocol);
    WebSocketsClient::enableHeartbeat(60 * 1000, 90 * 1000, 5);
@@ -110,10 +101,7 @@ void ArduinoSocketIOClient::beginSSLWithCA(const char *host, const char *nsp,
  * @param CA_cert BearSSL::X509List *
  * @param protocol const char *
  */
-void ArduinoSocketIOClient::beginSSLWithCA(const char *host, const char *nsp,
-                                           uint16_t port, const char *url,
-                                           BearSSL::X509List *CA_cert,
-                                           const char *protocol) {
+void ArduinoSocketIOClient::beginSSLWithCA(const char *host, const char *nsp, uint16_t port, const char *url, BearSSL::X509List *CA_cert, const char *protocol) {
    _nsp = nsp;
    WebSocketsClient::beginSocketIOSSLWithCA(host, port, url, CA_cert, protocol);
    WebSocketsClient::enableHeartbeat(60 * 1000, 90 * 1000, 5);
@@ -126,10 +114,7 @@ void ArduinoSocketIOClient::beginSSLWithCA(const char *host, const char *nsp,
  * @param clientCert const char *
  * @param clientPrivateKey const char *
  */
-void ArduinoSocketIOClient::setSSLClientCertKey(const char *clientCert,
-                                                const char *clientPrivateKey) {
-   WebSocketsClient::setSSLClientCertKey(clientCert, clientPrivateKey);
-}
+void ArduinoSocketIOClient::setSSLClientCertKey(const char *clientCert, const char *clientPrivateKey) { WebSocketsClient::setSSLClientCertKey(clientCert, clientPrivateKey); }
 
 /**
  * @brief Set cert key
@@ -137,17 +122,12 @@ void ArduinoSocketIOClient::setSSLClientCertKey(const char *clientCert,
  * @param clientCert BearSSL::X509List *
  * @param clientPrivateKey BearSSL::PrivateKey *
  */
-void ArduinoSocketIOClient::setSSLClientCertKey(
-    BearSSL::X509List *clientCert, BearSSL::PrivateKey *clientPrivateKey) {
-   WebSocketsClient::setSSLClientCertKey(clientCert, clientPrivateKey);
-}
+void ArduinoSocketIOClient::setSSLClientCertKey(BearSSL::X509List *clientCert, BearSSL::PrivateKey *clientPrivateKey) { WebSocketsClient::setSSLClientCertKey(clientCert, clientPrivateKey); }
 
 #endif
 #endif
 
-void ArduinoSocketIOClient::configureEIOping(bool disableHeartbeat) {
-   _disableHeartbeat = disableHeartbeat;
-}
+void ArduinoSocketIOClient::configureEIOping(bool disableHeartbeat) { _disableHeartbeat = disableHeartbeat; }
 
 /**
  * @brief Initiate client and bind to function param in function onEvent. You
@@ -155,9 +135,7 @@ void ArduinoSocketIOClient::configureEIOping(bool disableHeartbeat) {
  *
  */
 void ArduinoSocketIOClient::initClient(void) {
-   onEvent(std::bind(&ArduinoSocketIOClient::socketEvent, this,
-                     std::placeholders::_1, std::placeholders::_2,
-                     std::placeholders::_3));
+   onEvent(std::bind(&ArduinoSocketIOClient::socketEvent, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
 
    if (_client.cUrl.indexOf("EIO=4") != -1) {
       SOCKETIOCLIENT_DEBUG("[wsIOc] found EIO=4 disable EIO ping on client\n");
@@ -172,11 +150,7 @@ void ArduinoSocketIOClient::initClient(void) {
  * @param event const char *
  * @param func std::function<void(const char *payload, size_t length)>
  */
-void ArduinoSocketIOClient::on(
-    const char *event,
-    std::function<void(const char *payload, size_t length)> func) {
-   _events[event] = func;
-}
+void ArduinoSocketIOClient::on(const char *event, std::function<void(const char *payload, size_t length)> func) { _events[event] = func; }
 
 /**
  * @brief Add a listener function into _packets, this listener can handle event
@@ -185,11 +159,7 @@ void ArduinoSocketIOClient::on(
  * @param event String
  * @param func std::function<void(const char *payload, size_t length)>
  */
-void ArduinoSocketIOClient::on(
-    String event,
-    std::function<void(const char *payload, size_t length)> func) {
-   on(event.c_str(), func);
-}
+void ArduinoSocketIOClient::on(String event, std::function<void(const char *payload, size_t length)> func) { on(event.c_str(), func); }
 
 /**
  * @brief Remove the event handle function in _events of class
@@ -202,8 +172,7 @@ void ArduinoSocketIOClient::remove(const char *event) {
    if (e != _events.end()) {
       _events.erase(e);
    } else {
-      SOCKETIOCLIENT_DEBUG("[SIoC] event %s not found, can not be removed",
-                           event);
+      SOCKETIOCLIENT_DEBUG("[SIoC] event %s not found, can not be removed", event);
    }
 }
 
@@ -231,8 +200,7 @@ void ArduinoSocketIOClient::removeAll() { _events.clear(); }
  */
 void ArduinoSocketIOClient::emit(const char *event, const char *payload) {
    if (isConnected()) {
-      const int capacity = 2 * (String(_nsp).length() + String(event).length() +
-                                String(payload).length());
+      const int capacity = 2 * (String(_nsp).length() + String(event).length() + String(payload).length());
 
       DynamicJsonDocument _doc(capacity);
       JsonArray _ms = _doc.to<JsonArray>();
@@ -271,9 +239,7 @@ void ArduinoSocketIOClient::emit(const char *event, const char *payload) {
  * @param event String
  * @param payload String
  */
-void ArduinoSocketIOClient::emit(String event, String payload) {
-   emit(event.c_str(), payload.c_str());
-}
+void ArduinoSocketIOClient::emit(String event, String payload) { emit(event.c_str(), payload.c_str()); }
 
 /**
  * @brief This function is used for calling listener function in _packets to
@@ -283,15 +249,13 @@ void ArduinoSocketIOClient::emit(String event, String payload) {
  * @param payload const char *
  * @param length size_t
  */
-void ArduinoSocketIOClient::trigger(const char *event, const char *payload,
-                                    size_t length) {
+void ArduinoSocketIOClient::trigger(const char *event, const char *payload, size_t length) {
    auto e = _events.find(event);
    if (e != _events.end()) {
       // SOCKETIOCLIENT_DEBUG("[SIoC] trigger event %s\n", event);
       e->second(payload, length);
    } else {
-      SOCKETIOCLIENT_DEBUG("[SIoC] event %s not found. %d events available\n",
-                           event, _events.size());
+      SOCKETIOCLIENT_DEBUG("[SIoC] event %s not found. %d events available\n", event, _events.size());
    }
 }
 
@@ -388,8 +352,7 @@ String ArduinoSocketIOClient::getEventPayload(String msg) {
  */
 void ArduinoSocketIOClient::handleEvent(uint8_t *payload) {
    String msg = String((char *)payload);
-   trigger(getEventName(msg).c_str(), getEventPayload(msg).c_str(),
-           getEventPayload(msg).length());
+   trigger(getEventName(msg).c_str(), getEventPayload(msg).c_str(), getEventPayload(msg).length());
 }
 
 /**
@@ -398,9 +361,7 @@ void ArduinoSocketIOClient::handleEvent(uint8_t *payload) {
  *
  * @param cbEvent SocketIOClientEvent
  */
-void ArduinoSocketIOClient::onEvent(SocketIOClientEvent cbEvent) {
-   _cbEvent = cbEvent;
-}
+void ArduinoSocketIOClient::onEvent(SocketIOClientEvent cbEvent) { _cbEvent = cbEvent; }
 
 /**
  * @brief Default event handle function. This will be binded in initClient
@@ -410,8 +371,7 @@ void ArduinoSocketIOClient::onEvent(SocketIOClientEvent cbEvent) {
  * @param payload uint8_t *
  * @param length size_t
  */
-void ArduinoSocketIOClient::socketEvent(socketIOmessageType_t type,
-                                        uint8_t *payload, size_t length) {
+void ArduinoSocketIOClient::socketEvent(socketIOmessageType_t type, uint8_t *payload, size_t length) {
    switch (type) {
    case sIOtype_DISCONNECT:
       SOCKETIOCLIENT_DEBUG("[SIoC] Disconnected!\n");
@@ -455,9 +415,7 @@ void ArduinoSocketIOClient::socketEvent(socketIOmessageType_t type,
  *
  * @return bool
  */
-bool ArduinoSocketIOClient::isConnected(void) {
-   return WebSocketsClient::isConnected();
-}
+bool ArduinoSocketIOClient::isConnected(void) { return WebSocketsClient::isConnected(); }
 
 /**
  * send text data to client
@@ -467,8 +425,7 @@ bool ArduinoSocketIOClient::isConnected(void) {
  * @param headerToPayload bool (see sendFrame for more details)
  * @return true if ok
  */
-bool ArduinoSocketIOClient::send(socketIOmessageType_t type, uint8_t *payload,
-                                 size_t length, bool headerToPayload) {
+bool ArduinoSocketIOClient::send(socketIOmessageType_t type, uint8_t *payload, size_t length, bool headerToPayload) {
    bool ret = false;
    if (length == 0) {
       length = strlen((const char *)payload);
@@ -477,8 +434,7 @@ bool ArduinoSocketIOClient::send(socketIOmessageType_t type, uint8_t *payload,
    if (clientIsConnected(&_client) && _client.status == WSC_CONNECTED) {
       if (!headerToPayload) {
          // webSocket Header
-         ret = WebSocketsClient::sendFrameHeader(&_client, WSop_text,
-                                                 length + 2, true);
+         ret = WebSocketsClient::sendFrameHeader(&_client, WSop_text, length + 2, true);
          // Engine.IO / Socket.IO Header
          if (ret) {
             uint8_t buf[3] = {eIOtype_MESSAGE, type, 0x00};
@@ -495,24 +451,13 @@ bool ArduinoSocketIOClient::send(socketIOmessageType_t type, uint8_t *payload,
    return false;
 }
 
-bool ArduinoSocketIOClient::send(socketIOmessageType_t type,
-                                 const uint8_t *payload, size_t length) {
-   return send(type, (uint8_t *)payload, length);
-}
+bool ArduinoSocketIOClient::send(socketIOmessageType_t type, const uint8_t *payload, size_t length) { return send(type, (uint8_t *)payload, length); }
 
-bool ArduinoSocketIOClient::send(socketIOmessageType_t type, char *payload,
-                                 size_t length, bool headerToPayload) {
-   return send(type, (uint8_t *)payload, length, headerToPayload);
-}
+bool ArduinoSocketIOClient::send(socketIOmessageType_t type, char *payload, size_t length, bool headerToPayload) { return send(type, (uint8_t *)payload, length, headerToPayload); }
 
-bool ArduinoSocketIOClient::send(socketIOmessageType_t type,
-                                 const char *payload, size_t length) {
-   return send(type, (uint8_t *)payload, length);
-}
+bool ArduinoSocketIOClient::send(socketIOmessageType_t type, const char *payload, size_t length) { return send(type, (uint8_t *)payload, length); }
 
-bool ArduinoSocketIOClient::send(socketIOmessageType_t type, String &payload) {
-   return send(type, (uint8_t *)payload.c_str(), payload.length());
-}
+bool ArduinoSocketIOClient::send(socketIOmessageType_t type, String &payload) { return send(type, (uint8_t *)payload.c_str(), payload.length()); }
 
 /**
  * send text data to client
@@ -522,27 +467,15 @@ bool ArduinoSocketIOClient::send(socketIOmessageType_t type, String &payload) {
  * @param headerToPayload bool  (see sendFrame for more details)
  * @return true if ok
  */
-bool ArduinoSocketIOClient::sendEVENT(uint8_t *payload, size_t length,
-                                      bool headerToPayload) {
-   return send(sIOtype_EVENT, payload, length, headerToPayload);
-}
+bool ArduinoSocketIOClient::sendEVENT(uint8_t *payload, size_t length, bool headerToPayload) { return send(sIOtype_EVENT, payload, length, headerToPayload); }
 
-bool ArduinoSocketIOClient::sendEVENT(const uint8_t *payload, size_t length) {
-   return sendEVENT((uint8_t *)payload, length);
-}
+bool ArduinoSocketIOClient::sendEVENT(const uint8_t *payload, size_t length) { return sendEVENT((uint8_t *)payload, length); }
 
-bool ArduinoSocketIOClient::sendEVENT(char *payload, size_t length,
-                                      bool headerToPayload) {
-   return sendEVENT((uint8_t *)payload, length, headerToPayload);
-}
+bool ArduinoSocketIOClient::sendEVENT(char *payload, size_t length, bool headerToPayload) { return sendEVENT((uint8_t *)payload, length, headerToPayload); }
 
-bool ArduinoSocketIOClient::sendEVENT(const char *payload, size_t length) {
-   return sendEVENT((uint8_t *)payload, length);
-}
+bool ArduinoSocketIOClient::sendEVENT(const char *payload, size_t length) { return sendEVENT((uint8_t *)payload, length); }
 
-bool ArduinoSocketIOClient::sendEVENT(String &payload) {
-   return sendEVENT((uint8_t *)payload.c_str(), payload.length());
-}
+bool ArduinoSocketIOClient::sendEVENT(String &payload) { return sendEVENT((uint8_t *)payload.c_str(), payload.length()); }
 
 /**
  * @brief Loop function is used for handling and sending events to server
@@ -576,8 +509,7 @@ void ArduinoSocketIOClient::loop(void) {
  * @param payload uint8_t *
  * @param length size_t
  */
-void ArduinoSocketIOClient::handleCbEvent(WStype_t type, uint8_t *payload,
-                                          size_t length) {
+void ArduinoSocketIOClient::handleCbEvent(WStype_t type, uint8_t *payload, size_t length) {
    switch (type) {
    case WStype_DISCONNECTED:
       runIOCbEvent(sIOtype_DISCONNECT, NULL, 0);
@@ -626,9 +558,7 @@ void ArduinoSocketIOClient::handleCbEvent(WStype_t type, uint8_t *payload,
          case sIOtype_BINARY_EVENT:
          case sIOtype_BINARY_ACK:
          default:
-            SOCKETIOCLIENT_DEBUG(
-                "[wsIOc] Socket.IO Message Type %c (%02X) is not implemented\n",
-                ioType, ioType);
+            SOCKETIOCLIENT_DEBUG("[wsIOc] Socket.IO Message Type %c (%02X) is not implemented\n", ioType, ioType);
             SOCKETIOCLIENT_DEBUG("[wsIOc] get text: %s\n", payload);
             break;
          }
@@ -640,9 +570,7 @@ void ArduinoSocketIOClient::handleCbEvent(WStype_t type, uint8_t *payload,
       case eIOtype_UPGRADE:
       case eIOtype_NOOP:
       default:
-         SOCKETIOCLIENT_DEBUG(
-             "[wsIOc] Engine.IO Message Type %c (%02X) is not implemented\n",
-             eType, eType);
+         SOCKETIOCLIENT_DEBUG("[wsIOc] Engine.IO Message Type %c (%02X) is not implemented\n", eType, eType);
          SOCKETIOCLIENT_DEBUG("[wsIOc] get text: %s\n", payload);
          break;
       }
