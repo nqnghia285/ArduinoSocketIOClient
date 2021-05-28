@@ -74,10 +74,8 @@ class ArduinoSocketIOClient : protected WebSocketsClient {
    void beginSSL(const char *host, const char *nsp = DEFAULT_PATH, uint16_t port = DEFAULT_SSL_PORT, const char *url = DEFAULT_URL, const char *protocol = DEFAULT_PROTOCOL);
    void beginSSL(String host, String nsp = DEFAULT_PATH, uint16_t port = DEFAULT_SSL_PORT, String url = DEFAULT_URL, String protocol = DEFAULT_PROTOCOL);
 #ifndef SSL_AXTLS
-   void beginSSLWithCA(const char *host, const char *nsp = DEFAULT_PATH, uint16_t port = DEFAULT_SSL_PORT, const char *url = DEFAULT_URL, const char *CA_cert = NULL,
-                       const char *protocol = DEFAULT_PROTOCOL);
-   void beginSSLWithCA(const char *host, const char *nsp = DEFAULT_PATH, uint16_t port = DEFAULT_SSL_PORT, const char *url = DEFAULT_URL, BearSSL::X509List *CA_cert = NULL,
-                       const char *protocol = DEFAULT_PROTOCOL);
+   void beginSSLWithCA(const char *host, const char *nsp = DEFAULT_PATH, uint16_t port = DEFAULT_SSL_PORT, const char *url = DEFAULT_URL, const char *CA_cert = NULL, const char *protocol = DEFAULT_PROTOCOL);
+   void beginSSLWithCA(const char *host, const char *nsp = DEFAULT_PATH, uint16_t port = DEFAULT_SSL_PORT, const char *url = DEFAULT_URL, BearSSL::X509List *CA_cert = NULL, const char *protocol = DEFAULT_PROTOCOL);
    void setSSLClientCertKey(const char *clientCert = NULL, const char *clientPrivateKey = NULL);
    void setSSLClientCertKey(BearSSL::X509List *clientCert = NULL, BearSSL::PrivateKey *clientPrivateKey = NULL);
 #endif
