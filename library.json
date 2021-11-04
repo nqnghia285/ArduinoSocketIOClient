@@ -1,0 +1,24 @@
+{
+	"name": "ArduinoSocketIOClient",
+	"version": "1.0.0",
+	"description": "A library support connect to server use Socket.IO",
+	"keywords": "socket, socketio, socket.io, socketioclient, arduinosocketioclient",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/nqnghia285/ArduinoSocketIOClient.git"
+	},
+	"authors": [
+		{
+			"name": "Nghia Ngo Quang",
+			"email": "nqnghia285@gmail.com",
+			"url": "https://github.com/nqnghia285"
+		}
+	],
+	"license": "MIT",
+	"dependencies": {
+		"bblanchon/ArduinoJson": "~6.18.5",
+		"links2004/WebSockets": "~2.3.6"
+	},
+	"frameworks": "*",
+	"platforms": "*"
+}
