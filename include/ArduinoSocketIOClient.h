@@ -1,7 +1,7 @@
 /**
  * ArduinoSocketIOClient.h
  *
- *  Created on: Apr 20, 2021
+ *  Created on: Nov 04, 2021
  *      Author: nqnghia285@gmail.com
  */
 
@@ -17,6 +17,7 @@
 #include <vector>
 
 #define EIO_HEARTBEAT_INTERVAL 20000
+#define FACTOR 4
 
 #define EIO_MAX_HEADER_SIZE (WEBSOCKETS_MAX_HEADER_SIZE + 1)
 #define SIO_MAX_HEADER_SIZE (EIO_MAX_HEADER_SIZE + 1)

@@ -1,6 +1,6 @@
 # ArduinoSocketIOClient for Arduino [![Build Status](https://github.com/Links2004/arduinoWebSockets/workflows/CI/badge.svg?branch=master)](https://github.com/nqnghia285/ArduinoSocketIOClient)
 
-A library support connecting to server used [Socket.IO](https://socket.io/).
+A library supports connecting to server used [Socket.IO](https://socket.io/).
 
 ##### Support features:
 

@@ -1,7 +1,7 @@
 /*
- * SocketIOClient.cpp
+ * ArduinoSocketIOClient.cpp
  *
- *  Created on: Apr 20, 2021
+ *  Created on: Nov 04, 2021
  *      Author: nqnghia285
  */
 #include "ArduinoSocketIOClient.h"
@@ -200,7 +200,7 @@ void ArduinoSocketIOClient::removeAll() { _events.clear(); }
  */
 void ArduinoSocketIOClient::emit(const char *event, const char *payload) {
    if (isConnected()) {
-      const int capacity = 4 * (String(_nsp).length() + String(event).length() + String(payload).length());
+      const int capacity = FACTOR * (String(_nsp).length() + String(event).length() + String(payload).length());
 
       DynamicJsonDocument _doc(capacity);
       JsonArray _ms = _doc.to<JsonArray>();
@@ -266,7 +266,7 @@ void ArduinoSocketIOClient::trigger(const char *event, const char *payload, size
  * @return String
  */
 String ArduinoSocketIOClient::getEventName(String msg) {
-   const int capacity = 4 * msg.length();
+   const int capacity = FACTOR * msg.length();
    DynamicJsonDocument doc(capacity);
 
    String result = "";
@@ -309,7 +309,7 @@ String ArduinoSocketIOClient::getEventName(String msg) {
  * @return String
  */
 String ArduinoSocketIOClient::getEventPayload(String msg) {
-   const int capacity = 4 * msg.length();
+   const int capacity = FACTOR * msg.length();
    DynamicJsonDocument doc(capacity);
 
    String result = "";
