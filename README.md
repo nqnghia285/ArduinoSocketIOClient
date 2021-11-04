@@ -173,7 +173,7 @@ ArduinoSocketIOClient library used WebSockets library (v2.3.6) and ArduinoJson l
 
 ### Example
 
-Visit to: https://github.com/nqnghia285/ArduinoSocketIOClient/blob/main/examples/ExampleForESP8266.cpp
+Visit to: https://github.com/nqnghia285/ArduinoSocketIOClient/blob/master/examples/ExampleForESP8266.cpp
 
 ### Issues
 
